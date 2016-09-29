@@ -35,7 +35,7 @@ class UploadTo(object):
 
     def __call__(self, instance, filename):
         uploader = getattr(instance, 'uploader')
-        uploader_id = hashlib.md5(str(uploader.pk)).hexdigest()[0:10]
+        uploader_id = hashlib.md5(bytes(str(uploader.pk), 'utf-8')).hexdigest()[0:10]
 
         path, ext = os.path.splitext(filename)
         path, name = os.path.split(path)
